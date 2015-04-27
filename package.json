@@ -1,0 +1,23 @@
+{
+  "name": "EnergyConsumption",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shuninghuang/EnergyConsumption.git"
+  },
+  "keywords": [
+    "graduation",
+    "project"
+  ],
+  "author": "shuning",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/shuninghuang/EnergyConsumption/issues"
+  },
+  "homepage": "https://github.com/shuninghuang/EnergyConsumption"
+}
