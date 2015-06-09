@@ -1,0 +1,66 @@
+<div class="profile">
+    <div class="modal-header">
+        <h3 class="modal-title">{{title}}</h3>
+    </div>
+    <div class="modal-body">
+        <alert ng-if="alert.msg" type="{{alert.type}}" close="alert.msg=''">{{alert.msg}}</alert>
+        <form role="form" >
+            <div class="form-group">
+                <label for="loginname">登录名</label>
+                <input type="loginname" class="form-control" ng-model='user.LOGINNAME' id="loginname" placeholder="{{user.LOGINNAME}}" required/>
+            </div>
+            <div class="form-group" ng-show="user.PASSWORD !== undefined">
+                <label for="password">密码</label>
+                <input type="psw" class="form-control" ng-model='user.PASSWORD' id="password" placeholder="{{user.PASSWORD}}" required/>
+            </div>
+            <div class="form-group">
+                <label for="realname">姓名</label>
+                <input type="realname" class="form-control" ng-model='user.REALNAME' id="realname" placeholder="{{user.REALNAME}}" />
+            </div>
+            <div class="form-group">
+                <label for="post">角色</label>
+                <input type="post" class="form-control" ng-model='user.POST' id="post" placeholder="{{user.POST}}" />
+            </div>
+            <div class="form-group">
+                <label for="phone">电话</label>
+                <input type="tel" class="form-control" ng-model='user.PHONE' id="phone" placeholder="{{user.PHONE}}" />
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" class="form-control" ng-model='user.EMAIL' id="email" placeholder="{{user.EMAIL}}" />
+            </div>
+            <div class="form-group">
+                <label for="address">地址</label>
+                <input type="text" class="form-control" ng-model='user.ADDRESS' id="address" placeholder="{{user.ADDRESS}}" />
+            </div>
+            <div class="form-group">
+                <label for="description">介绍</label>
+                <input type="text" class="form-control" ng-model='user.DESCRIPTION' id="description" placeholder="{{user.DESCRIPTION}}" />
+            </div>
+            <div class="form-group">
+                <label for="userlevel">权限级别</label>
+                <input type="text" class="form-control" ng-model='user.USERLEVEL' id="userlevel" placeholder="{{user.USERLEVEL}}" />
+            </div>
+            <div class="form-group">
+                <label for="company">所属公司</label>
+                <select class="form-control" ng-model='user.COMPANYID' ng-options="company.COMPANYNAME for company in companies" ng-change="handleCompanyChanged()">
+                    <option value="">{{user.COMPANYNAME}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="department">部门</label>
+                <select class="form-control" ng-model='user.DEPARTMENTID' ng-options="department.DEPARTMENTNAME for department in departments" ng-disabled="isLoading" ng-change="handleDepartmentChanged()">
+                    <option value="">{{user.DEPARTMENTNAME}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="onoff">onoff</label>
+                <input type="onoff" class="form-control" ng-model='user.ONOFF' id="onoff" placeholder="{{user.ONOFF}}" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="classic-input" ng-click="ok()" value="保存">
+        <input type="submit" class="classic-input cancel" ng-click="cancel()" value="取消">
+    </div>
+</div>

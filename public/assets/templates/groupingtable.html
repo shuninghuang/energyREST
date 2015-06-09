@@ -1,0 +1,44 @@
+<div id="demo" class="groupingtable">
+
+  <div class="linebox">
+    <div class="input">
+      <input type="button" value="添加算法分类" ng-click="addType()" class="classic-input">
+    </div>
+    <div class="input2">
+      <input type="button" value="{{buttonText}}" ng-click="add()" class="classic-input">
+    </div>
+    <div class="search-box">
+      <input class="search-input" type="text" placeholder="Search for something..." ng-model="searchText">
+      <input class="search-button" type="submit" value="Search">
+      <i class="search-icon fa fa-search"></i>
+    </div>
+  </div>
+  <alert ng-if="alert.msg" type="{{alert.type}}" close="alert.msg=''">{{alert.msg}}</alert>
+  <!-- Responsive table starts here -->
+  <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+  <div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="groupingtable" class="table table-hover">
+      <thead>
+        <tr>
+          <th ng-repeat="header in headers">{{header.columnName}}</th>
+          <th ng-show="enableDelete" class="delete-column">执行</th>
+          <th ng-show="enableDelete" class="delete-column">删除</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="group in groups | filter:searchText">
+        <tr class="{{selected === group.id ? 'group selected' : 'group'}}" ng-show="group.name !== 'root'">
+          <td data-title="name" class="groupname" ng-click="open(group.id)"><span class="{{!group.open ? 'fa fa-minus' : 'fa fa-plus'}}"></span>{{group.name}}</td>
+          <td ng-click="handleClick(group)"></td>
+          <td ng-click="handleClick(group)"></td>
+          <td><input type="button" class="classic-input" value="删除" ng-click="handleDelete(group)"></td>
+        </tr>
+        <tr ng-repeat="item in group.children | orderBy: '+NAME'" ng-show="!group.open">
+          <td ng-repeat="header in headers" data-title="headerMap[header.key]" class="{{group.name === 'root' ? header.key + '-root' : header.key}}" ng-click="handleClick(item)">{{item[header.key]}}</td>
+          <td><input type="button" class="classic-input" value="执行" ng-click="execute(item)"></td>
+          <td><input type="button" class="classic-input" value="删除" ng-click="handleDelete(item, group)"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

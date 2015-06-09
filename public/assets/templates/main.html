@@ -1,0 +1,20 @@
+<div class="custom-nav">
+	<ul class="nav-list">
+		<li ng-class="{ active: $state.includes('main.users') }" ui-sref-active="active">
+			<a ui-sref="main.users">用户管理</a>
+		</li>
+		<li ng-class="{ active: $state.includes('main.algorithms') }" ui-sref-active="active">
+			<a ui-sref="main.algorithms">算法管理</a>
+		</li>
+		<li ng-class="{ active: $state.includes('main.records') }" ui-sref-active="active">
+			<a ui-sref="main.records">记录管理</a>
+		</li>
+		<li ui-sref-active="active">
+			<span class="fa fa-user" ng-click="viewProfile()"></span>
+			<span class="fa fa-sign-out" ui-sref="authentication"></span>
+		</li>
+	</ul>
+</div>
+<div ui-view class="custom-table">
+</div>
+

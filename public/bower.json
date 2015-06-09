@@ -1,0 +1,27 @@
+{
+  "name": "GraduationProject",
+  "version": "0.0.1",
+  "authors": [
+    "shuninghuang <shuning.ch@gmail.com>"
+  ],
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "angular-bootstrap": "~0.12.0",
+    "fontawesome": "~4.2.0",
+    "less": "~2.2.0",
+    "angular-ui-router": "~0.2.13",
+    "bootstrap": "~3.3.4",
+    "lodash": "~3.6.0"
+  },
+  "resolutions": {
+    "angular": ">= 1.0.8"
+  }
+}

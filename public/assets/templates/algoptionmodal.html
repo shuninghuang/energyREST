@@ -1,0 +1,20 @@
+<div class="paramsmodal">
+    <div class="modal-header">
+        <h3 class="modal-title">{{title}}</h3>
+    </div>
+    <div class="modal-body">
+    	<label class="checkbox">
+		    <input type="checkbox" ng-model="checked" ng-change="checkedAll()">全部
+		</label>
+        <label class="checkbox" ng-repeat="group in groups">
+		    <input type="checkbox" ng-model="group.checked" ng-change="handleChecked(group)" ng-show="group.name !== 'root'">{{group.name !== 'root' ? group.name : null}}
+		    <label class="checkbox" ng-repeat="c in group.children">
+		    	<input type="checkbox" ng-model="c.checked" ng-change="handleChecked(c)">{{c.NAME}}
+		    </label>
+		</label>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="classic-input" ng-click="ok()" value="保存">
+        <input type="button" class="classic-input cancel" ng-click="cancel()" value="取消">
+    </div>
+</div>

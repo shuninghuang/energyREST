@@ -1,0 +1,26 @@
+<div class="container">
+
+	<div id="login">
+
+		<form>
+
+			<fieldset class="clearfix">
+
+				<p>
+					<span class="fa fa-user"></span>
+					<input type="text" ng-model="loginObj.name" required>
+				</p> <!-- JS because of IE support; better: placeholder="Username" -->
+				<p>
+					<span class="fa fa-lock"></span>
+					<input type="password" ng-model="loginObj.psw" required>
+				</p> <!-- JS because of IE support; better: placeholder="Password" -->
+				<p>{{err}}</p>
+				<p><input type="submit" value="{{buttonText}}" ng-click="login()" class="classic-input"></p>
+
+			</fieldset>
+
+		</form>
+
+	</div> <!-- end login -->
+
+</div>

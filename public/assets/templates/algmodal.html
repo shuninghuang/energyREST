@@ -1,0 +1,38 @@
+<div class="paramsmodal">
+    <div class="modal-header">
+        <h3 class="modal-title">{{title}}</h3>
+        <span class="fa fa-plus" ng-click="add()"></span>
+    </div>
+    <div class="modal-body">
+        <alert ng-if="alert.msg" type="{{alert.type}}" close="alert.msg=''">{{alert.msg}}</alert>
+        <form role="form" >
+            <label for="name">算法名称</label>
+            <input type="name" class="form-control" ng-model='algorithm.NAME' id="name" placeholder="{{algorithm.NAME}}"/>
+            <label for="name">算法执行路径</label>
+            <input type="name" class="form-control" ng-model='algorithm.CLASSPATH' id="name" placeholder="{{algorithm.CLASSPATH}}"/>
+            <label for="name">算法分类</label>
+            <select class="form-control" ng-model='algorithm.GID' ng-options="g.ID as g.NAME for g in groups">
+            </select>
+            <div ng-repeat="param in params" class="param-input">
+                <div class="delete-button">
+                    <span class="fa fa-minus" ng-click="remove($index)"></span>
+                </div>
+                <div class="name-input">
+                    <label for="paramname">参数名</label>
+                    <input type="paramname" class="form-control" ng-model='param.name' id="paramname" placeholder="{{key}}" />
+                </div>
+                <div class="type-input">
+                    <label for="type">参数类型</label>
+                    <select class="form-control" ng-model='param.type'>
+                        <option value="text">text</option>
+                        <option value="number">number</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="classic-input" ng-click="ok()" value="保存">
+        <input type="submit" class="classic-input cancel" ng-click="cancel()" value="取消">
+    </div>
+</div>
