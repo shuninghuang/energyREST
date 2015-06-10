@@ -23,7 +23,7 @@ MisApp.directive('comfirm', function($state, UserService) {
 				    var data = $scope.loginObj;
 				    UserService.auth(data).then(function (data) {
 				    	$scope.buttonText = "登陆";
-	                    $state.go('users', {id: data.id});
+	                    $state.go('main.users', {id: data});
 	            	}, function(err) {
 	            		$scope.err = err;
 	            		$scope.buttonText = "登陆";

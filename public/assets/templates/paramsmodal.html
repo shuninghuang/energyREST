@@ -3,6 +3,7 @@
         <h3 class="modal-title">{{title}}</h3>
     </div>
     <div class="modal-body">
+        <alert ng-if="alert.msg" type="{{alert.type}}" close="alert.msg=''">{{alert.msg}}</alert>
         <form name="form" class="css-form" novalidate>
             <label for="">任务名称</label>
             <input type="text" class="form-control" name="taskName" placeholder="text" ng-model="taskName" required="" />

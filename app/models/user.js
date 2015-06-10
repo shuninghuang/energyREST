@@ -75,11 +75,10 @@ module.exports = {
 	},
 	auth: function(connection, userName, psw) {
 		var defer = q.defer();
-		var hash = crypto.createHash('md5').update(psw, 'utf8').digest("base64");
 		connection.execute(
             "SELECT u.ID, u.PASSWORD "
-  		  + "FROM COMMON_SYSUSER u, COMMON_COMPANY c, COMMON_COMPANYDEPARTMENT d "
- 		  + "WHERE u.LOGINNAME = :username and c.ID = u.COMPANYID and d.ID = u.DEPARTMENTID",
+  		  + "FROM COMMON_SYSUSER u "
+ 		  + "WHERE u.LOGINNAME = :username",
             [userName],
             {
                 outFormat: oracledb.OBJECT
@@ -92,6 +91,7 @@ module.exports = {
 	            else {
 	            	if (result.rows.length) {
 	            		var user = result.rows[0];
+                        var hash = crypto.createHash('md5').update(psw, 'utf8').digest("base64");
 	            		user.PASSWORD === hash ? defer.resolve(user.ID) : defer.reject("Wrong password");
 	            	}
 	            	else defer.reject("Can't find that user");

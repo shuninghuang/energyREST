@@ -117,16 +117,22 @@ MisApp.controller('AlgExeModalInstanceCtrl', function ($scope, algorithm, $modal
     $scope.params = params;
     $scope.types = types;
     $scope.title = "执行算法";
+    var isExecuting = false;
     $scope.ok = function(form) {
-        if (form.$valid) {
+        if (form.$valid && !isExecuting) {
             form.$setPristine();
             form.$setUntouched();
             var args = _.pluck($scope.params, 'value');
             $scope.alert.msg = "正在执行中...请等待";
+            isExecuting = true;
             AlgorithmService.executeAlgorithm(userId, $scope.taskName, algorithm, args).then(function(data) {
+                isExecuting = false;
+                $scope.alert.msg = "";
                 $modalInstance.close(data);
             }, function(err) {
-                alert(err);
+                isExecuting = false;
+                $scope.alert.msg = err;
+                $scope.alert.type = "danger";
             })
         }
     };
@@ -293,9 +299,7 @@ MisApp.controller('AlgorithmsCtrl', function ($scope, $modal, groups, $statePara
         });
         
         modalInstance.result.then(function (data) {
-            alert(data);
         }, function(err) {
-            alert(err);
         })
     };
     $scope.handleClick = function(item) {
