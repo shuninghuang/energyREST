@@ -98,7 +98,7 @@ MisApp.controller('AlgOptionsModalInstanceCtrl', function ($scope, algorithms, u
     }
 });
 
-MisApp.controller('AlgExeModalInstanceCtrl', function ($scope, algorithm, $modalInstance, userId) {
+MisApp.controller('AlgExeModalInstanceCtrl', function ($scope, algorithm, $modalInstance, userId, AlgorithmService) {
     $scope.algorithm = algorithm;
     $scope.taskName = "";
     var paramnames = algorithm.PARAMNAMES.split(', ')
@@ -111,6 +111,9 @@ MisApp.controller('AlgExeModalInstanceCtrl', function ($scope, algorithm, $modal
             value: ""
         });
     }
+    $scope.alert = {
+        msg: ""
+    }
     $scope.params = params;
     $scope.types = types;
     $scope.title = "执行算法";
@@ -119,6 +122,7 @@ MisApp.controller('AlgExeModalInstanceCtrl', function ($scope, algorithm, $modal
             form.$setPristine();
             form.$setUntouched();
             var args = _.pluck($scope.params, 'value');
+            $scope.alert.msg = "正在执行中...请等待";
             AlgorithmService.executeAlgorithm(userId, $scope.taskName, algorithm, args).then(function(data) {
                 $modalInstance.close(data);
             }, function(err) {

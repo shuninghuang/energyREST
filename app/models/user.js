@@ -77,7 +77,7 @@ module.exports = {
 		var defer = q.defer();
 		var hash = crypto.createHash('md5').update(psw, 'utf8').digest("base64");
 		connection.execute(
-            "SELECT u.ID u.PASSWORD "
+            "SELECT u.ID, u.PASSWORD "
   		  + "FROM COMMON_SYSUSER u, COMMON_COMPANY c, COMMON_COMPANYDEPARTMENT d "
  		  + "WHERE u.LOGINNAME = :username and c.ID = u.COMPANYID and d.ID = u.DEPARTMENTID",
             [userName],
